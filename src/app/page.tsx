@@ -18,6 +18,8 @@ import UnstyledLink from '@/components/links/UnstyledLink';
  */
 import Logo from '~/svg/Logo.svg';
 
+import StoryCard from '@/app/components/StoryCard';
+
 // !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
 // Before you begin editing, follow all comments with `STARTERCONF`,
 // to customize the default configuration.
@@ -25,6 +27,21 @@ import Logo from '~/svg/Logo.svg';
 export default function HomePage() {
   return (
     <main>
+
+      <div className="max-w-5xl mx-auto py-12 px-6">
+        <h1 className="text-4xl font-bold mb-4 text-center">The Climate Stories</h1>
+        <p className="text-center text-gray-600 mb-12">
+          Narrative visualizations that reveal the forces behind our changing planet.
+        </p>
+        <div className="grid gap-8 md:grid-cols-2">
+          <StoryCard
+            title="The Keeling Curve"
+            slug="/keeling-curve"
+            description="A 60-year record of rising CO₂ and Earth’s seasonal breath."
+          />
+        </div>
+      </div>
+
       <Head>
         <title>Hi</title>
       </Head>
