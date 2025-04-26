@@ -3,11 +3,13 @@
 import Head from 'next/head';
 import * as React from 'react';
 import '@/lib/env';
+import Image from 'next/image';
 
 import ArrowLink from '@/components/links/ArrowLink';
 import ButtonLink from '@/components/links/ButtonLink';
 import UnderlineLink from '@/components/links/UnderlineLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
+import Button from '@/components/buttons/Button';
 
 /**
  * SVGR Support
@@ -29,17 +31,39 @@ export default function HomePage() {
     <main>
 
       <div className="max-w-5xl mx-auto py-12 px-6">
-        <h1 className="text-4xl font-bold mb-4 text-center">The Climate Stories</h1>
+        {/* Hero Section */}
+        <section className="relative w-full h-[60vh] mb-12 overflow-hidden shadow-md">
+          <Image
+            src="/images/hero.jpg"
+            alt="Climate Change Hero Image"
+            layout="fill"
+            objectFit="cover"
+            priority
+          // className="rounded-xl"
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white text-center p-4">
+            <h1 className="text-4xl md:text-6xl mb-4 font-thin">The Vanishing Points</h1>
+            {/* <p className="text-lg md:text-2xl max-w-2xl">
+              A visual journey through the forces shaping our changing planet.
+            </p> */}
+            <Button variant="light">Explore</Button>
+          </div>
+        </section>
+
+        {/* Main Intro */}
+        <h2 className="text-3xl font-semibold mb-4 text-center">Data-Driven Stories from a Changing Planet</h2>
         <p className="text-center text-gray-600 mb-12">
-          Narrative visualizations that reveal the forces behind our changing planet.
+          See the hidden patterns of Earth's climate — one story at a time.
         </p>
-        <div className="grid gap-8 md:grid-cols-2">
+
+        {/* Stories Grid */}
+        <section id="stories" className="grid gap-8 md:grid-cols-2">
           <StoryCard
             title="The Keeling Curve"
             slug="/keeling-curve"
             description="A 60-year record of rising CO₂ and Earth’s seasonal breath."
           />
-        </div>
+        </section>
       </div>
 
       <Head>
