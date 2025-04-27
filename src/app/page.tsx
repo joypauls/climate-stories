@@ -62,9 +62,9 @@ export default function HomePage() {
               {/* <p className="text-lg md:text-2xl max-w-2xl">
             A visual journey through the forces shaping our changing planet.
           </p> */}
-              <Button className="mb-6" variant="light">
+              <ButtonLink className="mb-6" variant="light" href="#stories">
                 Explore
-              </Button>
+              </ButtonLink>
             </motion.div>
           </section>
         </div>
@@ -78,7 +78,7 @@ export default function HomePage() {
         </p>
 
         {/* Stories Grid */}
-        <section id="stories" className="grid gap-8 md:grid-cols-2">
+        <section id="stories" className="grid gap-8 md:grid-cols-2 py-12">
           <StoryCard
             title="The Keeling Curve 📈"
             slug="/keeling-curve"
