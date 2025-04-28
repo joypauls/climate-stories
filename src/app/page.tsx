@@ -56,7 +56,7 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
             >
-              <h1 className="text-4xl md:text-6xl mb-4 font-thin">
+              <h1 className="text-4xl md:text-6xl mb-4 font-thin font-garamond">
                 Meltwater Archives
               </h1>
               <p className="text-lg mb-4 font-thin">

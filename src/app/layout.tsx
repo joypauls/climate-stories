@@ -7,6 +7,14 @@ import "@/styles/colors.css";
 
 import { siteConfig } from "@/constant/config";
 
+// make another font available
+import { Cormorant_Garamond } from "next/font/google";
+const garamond = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: "300", // You can specify which weight(s) you want
+  variable: "--font-garamond",
+});
+
 // !STARTERCONF Change these default meta
 // !STARTERCONF Look at @/constant/config to change them
 export const metadata: Metadata = {
@@ -55,7 +63,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
+    <html className={`${garamond.variable}`}>
       <body>{children}</body>
     </html>
   );

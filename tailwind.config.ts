@@ -7,6 +7,7 @@ export default {
     extend: {
       fontFamily: {
         primary: ["Inter", ...defaultTheme.fontFamily.sans],
+        garamond: ["var(--font-garamond)", "serif"],
       },
       colors: {
         primary: {
