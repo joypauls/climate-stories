@@ -10,7 +10,7 @@ import ArrowLink from "@/components/links/ArrowLink";
 import ButtonLink from "@/components/links/ButtonLink";
 import UnderlineLink from "@/components/links/UnderlineLink";
 import UnstyledLink from "@/components/links/UnstyledLink";
-import Button from "@/components/buttons/Button";
+// import Button from "@/components/buttons/Button";
 // import Nav from '@/app/components/Nav';
 
 /**
@@ -81,8 +81,13 @@ export default function HomePage() {
         <section id="stories" className="grid gap-8 md:grid-cols-2 py-12">
           <StoryCard
             title="The Keeling Curve 📈"
-            slug="/keeling-curve"
+            slug="/stories/keeling-curve"
             description="A 60-year record of rising CO₂ and Earth’s seasonal breath."
+          />
+          <StoryCard
+            title="Surface Temperature 📈"
+            slug="/stories/surface-temp"
+            description="The record of global surface temperature anomalies."
           />
         </section>
       </div>
