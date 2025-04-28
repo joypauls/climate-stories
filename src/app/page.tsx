@@ -48,21 +48,24 @@ export default function HomePage() {
               className="absolute inset-0 bg-black flex flex-col justify-center items-center text-white text-center p-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.5 }}
-              transition={{ duration: 2, ease: "easeOut" }}
+              transition={{ duration: 2, ease: "easeOut", delay: 0.3 }}
             />
             <motion.div
               className="relative z-10 flex flex-col justify-center items-center h-full text-center text-white p-4"
               initial={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
+              transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
             >
-              <h1 className="text-4xl md:text-6xl mb-6 font-thin">
+              <h1 className="text-4xl md:text-6xl mb-4 font-thin">
                 Meltwater Archives
               </h1>
+              <p className="text-lg mb-4 font-thin">
+                Data-driven stories from a changing planet.
+              </p>
               {/* <p className="text-lg md:text-2xl max-w-2xl">
             A visual journey through the forces shaping our changing planet.
           </p> */}
-              <ButtonLink className="mb-6" variant="light" href="#stories">
+              <ButtonLink className="mb-12" variant="light" href="#stories">
                 Explore
               </ButtonLink>
             </motion.div>
@@ -88,6 +91,11 @@ export default function HomePage() {
             title="Surface Temperature 📈"
             slug="/stories/surface-temp"
             description="The record of global surface temperature anomalies."
+          />
+          <StoryCard
+            title="Disappearing Ice 📈"
+            slug="/stories/disappearing-ice"
+            description="Shrinking ice sheets and rising sea levels."
           />
         </section>
       </div>
