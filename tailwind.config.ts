@@ -46,10 +46,21 @@ export default {
             backgroundPosition: "700px 0",
           },
         },
+        "slow-zoom": {
+          "0%": { transform: "scale(1)" },
+          "100%": { transform: "scale(1.05)" },
+        },
+        "slow-float": {
+          "0%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-5px)" },
+          "100%": { transform: "translateY(0)" },
+        },
       },
       animation: {
         flicker: "flicker 3s linear infinite",
         shimmer: "shimmer 1.3s linear infinite",
+        "slow-zoom": "slow-zoom 20s ease-in-out infinite alternate",
+        "slow-float": "slow-float 12s ease-in-out infinite",
       },
     },
   },

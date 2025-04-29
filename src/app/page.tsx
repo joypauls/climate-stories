@@ -42,7 +42,7 @@ export default function HomePage() {
             layout="fill"
             objectFit="cover"
             priority
-            // className="rounded-xl"
+            className="animate-slow-zoom"
           />
           <motion.div
             className="absolute inset-0 bg-black flex flex-col justify-center items-center text-white text-center p-4"
