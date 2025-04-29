@@ -31,11 +31,12 @@ import StoryCard from "@/app/components/StoryCard";
 export default function HomePage() {
   return (
     <main>
-      {/* py-12 */}
-      {/* <div className="max-w-6xl mx-auto px-6"> */}
       {/* Hero Section */}
-      <div className="w-full h-[100vh] flex flex-col justify-center">
-        <section className="relative w-full h-[100vh] overflow-hidden shadow-md">
+      <section
+        id="hero"
+        className="w-full h-[100vh] flex flex-col justify-center"
+      >
+        <div className="relative w-full h-[100vh] overflow-hidden">
           <Image
             src="/images/hero-alt4.jpg"
             alt="Hero Image"
@@ -57,10 +58,10 @@ export default function HomePage() {
             transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
           >
             {/* <h1 className="text-4xl md:text-6xl mb-4 font-thin font-garamond"> */}
-            <h1 className="text-4xl md:text-6xl mb-4 font-thin border-b border-primary-200">
+            <h1 className="text-4xl md:text-6xl mb-4 font-thin font-garamond border-b border-primary-200">
               Meltwater Archives
             </h1>
-            <p className="text-md mb-4 font-thin">
+            <p className="text-md mb-4 font-italics">
               Data-driven stories from a changing planet.
             </p>
             {/* <p className="text-lg md:text-2xl max-w-2xl">
@@ -70,18 +71,22 @@ export default function HomePage() {
               Explore
             </ButtonLink>
           </motion.div>
-        </section>
-      </div>
+        </div>
+      </section>
 
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Main Intro */}
-        <h2 className="text-3xl font-semibold mb-4 text-center">
+      <section
+        id="mission"
+        className="w-full min-h-[50vh] px-8 py-12 flex flex-col justify-center bg-primary-800 text-white"
+      >
+        <h2 className="text-3xl mb-4 text-center">
           Data-Driven Stories from a Changing Planet
         </h2>
-        <p className="text-center text-gray-600 mb-12">
+        <p className="text-center mb-4">
           See the hidden patterns of Earth's climate — one story at a time.
         </p>
+      </section>
 
+      <div className="max-w-6xl mx-auto px-8">
         {/* Stories Grid */}
         <section id="stories" className="grid gap-8 md:grid-cols-2 py-12">
           <StoryCard
