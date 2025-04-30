@@ -135,12 +135,17 @@ export default function HomePage() {
       >
         <blockquote className="border-l-8 border-primary-200 p-4 max-w-3xl">
           <p className="text-lg italic">
-            We are a team of scientists, artists, and storytellers dedicated to
-            uncovering the hidden patterns of Earth's climate. Our mission is to
-            make complex data accessible and engaging, one story at a time.
+            Human activities, principally through emissions of greenhouse gases,
+            have unequivocally caused global warming, with global surface
+            temperature reaching 1.1°C above 1850–1900 in 2011–2020. Global
+            greenhouse gas emissions have continued to increase, with unequal
+            historical and ongoing contributions arising from unsustainable
+            energy use, land use and land-use change, lifestyles and patterns of
+            consumption and production across regions, between and within
+            countries, and among individuals.
           </p>
           <footer className="mt-4 text-sm font-thin">
-            — Meltwater Archives Team
+            — IPCC Sixth Assessment Report
           </footer>
         </blockquote>
       </section>
@@ -198,7 +203,7 @@ export default function HomePage() {
           <footer className="absolute bottom-2 text-gray-700">
             © {new Date().getFullYear()} By{" "}
             <UnderlineLink href="https://theodorusclarence.com?ref=tsnextstarter">
-              Theodorus Clarence
+              Joy Paulsen
             </UnderlineLink>
           </footer>
         </div>
