@@ -54,17 +54,17 @@ export default function HomePage() {
             transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
           >
             {/* <h1 className="text-4xl md:text-6xl mb-4 font-thin font-garamond"> */}
-            <h1 className="text-5xl md:text-6xl mb-4 font-thin font-garamond border-b border-primary-200">
+            <h1 className="text-5xl md:text-6xl mb-2 font-bold font-garamond italic">
               Meltwater Archives
             </h1>
-            <p className="text-md mb-4 font-italics">
+            <p className="text-lg mb-4 font-light">
               Data-driven stories from a changing planet.
             </p>
             {/* <p className="text-lg md:text-2xl max-w-2xl">
             A visual journey through the forces shaping our changing planet.
           </p> */}
             <ButtonLink className="mb-12" variant="light" href="#stories">
-              Explore
+              Explore ↓
             </ButtonLink>
           </motion.div>
         </div>
@@ -73,7 +73,7 @@ export default function HomePage() {
       {/* Mission Section */}
       <section
         id="mission"
-        className="w-full min-h-[50vh] px-8 py-12 flex flex-col-reverse lg:flex-row items-center justify-center bg-primary-900 text-white"
+        className="w-full min-h-[50vh] px-12 py-20 flex flex-col-reverse lg:flex-row items-center justify-center bg-primary-900 text-white"
       >
         <figure>
           <Image
@@ -89,24 +89,26 @@ export default function HomePage() {
             </a>
           </figcaption>
         </figure>
-        <div className="lg:pl-6">
-          <h2 className="text-3xl mb-4">
-            Data-Driven Stories from a Changing Planet
-          </h2>
+        <div className="lg:pl-6 max-w-2xl">
+          <h2 className="text-4xl mb-4">Signals and Vital Signs</h2>
           <p className="mb-6">
             See the hidden patterns of Earth's climate — one story at a time.
+            The Earth is always speaking. In the rise and fall of carbon. In the
+            breath of forests. In the slow retreat of ice. These are stories
+            told by numbers, but felt through time. They are not speculative.
+            They are what's already happened — and what continues to unfold.
           </p>
         </div>
       </section>
 
       <section
         id="stories"
-        className="w-full min-h-[50vh] flex flex-col justify-center"
+        className="w-full min-h-[50vh] px-12 py-20 flex flex-col justify-center"
       >
         {/* Stories Grid */}
         <div
           id="stories"
-          className="max-w-6xl mx-auto grid gap-8 md:grid-cols-2 px-8 py-12"
+          className="max-w-6xl mx-auto grid gap-8 md:grid-cols-2 px-8 py-8"
         >
           <StoryCard
             title="The Keeling Curve 📈"
@@ -126,17 +128,37 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Copy Section */}
+      {/* Quote Section */}
       <section
-        id="copy"
-        className="w-full min-h-[50vh] px-8 py-12 flex flex-col justify-center bg-primary-900 text-white"
+        id="quote"
+        className="w-full min-h-[50vh] px-12 py-20 flex flex-col justify-center items-center bg-primary-900 text-white"
       >
-        <h2 className="text-3xl mb-4 text-center">
-          Data-Driven Stories from a Changing Planet
-        </h2>
-        <p className="text-center mb-4">
-          See the hidden patterns of Earth's climate — one story at a time.
-        </p>
+        <blockquote className="border-l-8 border-primary-200 p-4 max-w-3xl">
+          <p className="text-lg italic">
+            We are a team of scientists, artists, and storytellers dedicated to
+            uncovering the hidden patterns of Earth's climate. Our mission is to
+            make complex data accessible and engaging, one story at a time.
+          </p>
+          <footer className="mt-4 text-sm font-thin">
+            — Meltwater Archives Team
+          </footer>
+        </blockquote>
+      </section>
+
+      <section
+        id="about"
+        className="w-full min-h-[50vh] px-12 py-20 flex flex-col justify-center items-center bg-primary-700 text-white"
+      >
+        <div className="max-w-3xl">
+          <h2 className="text-4xl mb-4">About the Project</h2>
+          <p className="mb-6">
+            See the hidden patterns of Earth's climate — one story at a time.
+            The Earth is always speaking. In the rise and fall of carbon. In the
+            breath of forests. In the slow retreat of ice. These are stories
+            told by numbers, but felt through time. They are not speculative.
+            They are what's already happened — and what continues to unfold.
+          </p>
+        </div>
       </section>
 
       <Head>
