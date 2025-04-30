@@ -24,10 +24,6 @@ import Logo from "~/svg/Logo.svg";
 
 import StoryCard from "@/app/components/StoryCard";
 
-// !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
-// Before you begin editing, follow all comments with `STARTERCONF`,
-// to customize the default configuration.
-
 export default function HomePage() {
   return (
     <main>
@@ -40,10 +36,10 @@ export default function HomePage() {
           <Image
             src="/images/hero-alt4.jpg"
             alt="Hero Image"
-            layout="fill"
-            objectFit="cover"
+            fill
+            // objectFit="cover"
             priority
-            className="animate-slow-zoom"
+            className="object-cover animate-slow-zoom"
           />
           <motion.div
             className="absolute inset-0 bg-black flex flex-col justify-center items-center text-white text-center p-4"
@@ -58,7 +54,7 @@ export default function HomePage() {
             transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
           >
             {/* <h1 className="text-4xl md:text-6xl mb-4 font-thin font-garamond"> */}
-            <h1 className="text-4xl md:text-6xl mb-4 font-thin font-garamond border-b border-primary-200">
+            <h1 className="text-5xl md:text-6xl mb-4 font-thin font-garamond border-b border-primary-200">
               Meltwater Archives
             </h1>
             <p className="text-md mb-4 font-italics">
@@ -74,21 +70,44 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Mission Section */}
       <section
         id="mission"
-        className="w-full min-h-[50vh] px-8 py-12 flex flex-col justify-center bg-primary-800 text-white"
+        className="w-full min-h-[50vh] px-8 py-12 flex flex-col-reverse lg:flex-row items-center justify-center bg-primary-900 text-white"
       >
-        <h2 className="text-3xl mb-4 text-center">
-          Data-Driven Stories from a Changing Planet
-        </h2>
-        <p className="text-center mb-4">
-          See the hidden patterns of Earth's climate — one story at a time.
-        </p>
+        <figure>
+          <Image
+            src="/images/earth_20250425.gif"
+            alt="Earth Satellite Imagery Animation"
+            width={500}
+            height={500}
+          />
+          <figcaption className="text-sm text-center mt-1 font-thin">
+            Source:{" "}
+            <a href="https://epic.gsfc.nasa.gov/" target="_blank">
+              NASA EPIC Team
+            </a>
+          </figcaption>
+        </figure>
+        <div className="lg:pl-6">
+          <h2 className="text-3xl mb-4">
+            Data-Driven Stories from a Changing Planet
+          </h2>
+          <p className="mb-6">
+            See the hidden patterns of Earth's climate — one story at a time.
+          </p>
+        </div>
       </section>
 
-      <div className="max-w-6xl mx-auto px-8">
+      <section
+        id="stories"
+        className="w-full min-h-[50vh] flex flex-col justify-center"
+      >
         {/* Stories Grid */}
-        <section id="stories" className="grid gap-8 md:grid-cols-2 py-12">
+        <div
+          id="stories"
+          className="max-w-6xl mx-auto grid gap-8 md:grid-cols-2 px-8 py-12"
+        >
           <StoryCard
             title="The Keeling Curve 📈"
             slug="/stories/keeling-curve"
@@ -104,8 +123,21 @@ export default function HomePage() {
             slug="/stories/disappearing-ice"
             description="Shrinking ice sheets and rising sea levels."
           />
-        </section>
-      </div>
+        </div>
+      </section>
+
+      {/* Copy Section */}
+      <section
+        id="copy"
+        className="w-full min-h-[50vh] px-8 py-12 flex flex-col justify-center bg-primary-900 text-white"
+      >
+        <h2 className="text-3xl mb-4 text-center">
+          Data-Driven Stories from a Changing Planet
+        </h2>
+        <p className="text-center mb-4">
+          See the hidden patterns of Earth's climate — one story at a time.
+        </p>
+      </section>
 
       <Head>
         <title>Hi</title>
