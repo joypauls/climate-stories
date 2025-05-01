@@ -7,8 +7,12 @@ export default {
     extend: {
       fontFamily: {
         // primary: ["Inter", ...defaultTheme.fontFamily.sans],
-        primary: ["Roboto", ...defaultTheme.fontFamily.sans],
+        primary: ["var(--font-opensans)", ...defaultTheme.fontFamily.sans],
         garamond: ["var(--font-garamond)", "serif"],
+      },
+      fontSize: {
+        // base: ["1.125rem", { lineHeight: "1.75rem" }],
+        // sm: ["1rem", { lineHeight: "1.5rem" }], // = 15px / 22px
       },
       colors: {
         primary: {

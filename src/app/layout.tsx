@@ -11,8 +11,13 @@ import { siteConfig } from "@/constant/config";
 import { Cormorant_Garamond } from "next/font/google";
 const garamond = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: "300", // You can specify which weight(s) you want
+  weight: "300",
   variable: "--font-garamond",
+});
+import { Montserrat } from "next/font/google";
+const openSans = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-opensans",
 });
 
 // !STARTERCONF Change these default meta
@@ -63,7 +68,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className={`${garamond.variable}`}>
+    <html className={`${garamond.variable} ${openSans.variable}`}>
       <body>{children}</body>
     </html>
   );
