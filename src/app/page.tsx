@@ -10,8 +10,6 @@ import ArrowLink from "@/components/links/ArrowLink";
 import ButtonLink from "@/components/links/ButtonLink";
 import UnderlineLink from "@/components/links/UnderlineLink";
 import UnstyledLink from "@/components/links/UnstyledLink";
-// import Button from "@/components/buttons/Button";
-// import Nav from '@/app/components/Nav';
 
 /**
  * SVGR Support
@@ -20,7 +18,7 @@ import UnstyledLink from "@/components/links/UnstyledLink";
  * You can override the next-env if the type is important to you
  * @see https://stackoverflow.com/questions/68103844/how-to-override-next-js-svg-module-declaration
  */
-import Logo from "~/svg/Logo.svg";
+// import Logo from "~/svg/Logo.svg";
 import StoryCard from "@/app/components/StoryCard";
 import FadeInOnScroll from "@/app/components/FadeInOnScroll";
 
