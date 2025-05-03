@@ -7,6 +7,7 @@ import BreathingSine from "@/app/stories/keeling-curve/BreathingSine";
 import FadeInOnScroll from "@/app/components/FadeInOnScroll";
 import KeelingCurveReveal from "@/app/stories/keeling-curve/KeelingCurveReveal";
 import IntroSection from "@/app/stories/keeling-curve/IntroSection";
+import PpmSection from "@/app/stories/keeling-curve/PpmSection";
 
 export default function KeelingCurvePage() {
   return (
@@ -15,7 +16,6 @@ export default function KeelingCurvePage() {
     // subtitle="Earth’s carbon breath, recorded since 1958"
     >
       <IntroSection />
-
       <FadeInOnScroll>
         <section className="min-h-[70vh] flex flex-col justify-center items-center py-24">
           <div className="max-w-3xl flex flex-col justify-center items-center px-4">
@@ -41,9 +41,7 @@ export default function KeelingCurvePage() {
           </div>
         </section>
       </FadeInOnScroll>
-
       {/* <KeelingCurveChart /> */}
-
       <FadeInOnScroll>
         <section className="min-h-[70vh] flex flex-col justify-center items-center py-24">
           <div className="max-w-3xl flex flex-col justify-center items-center px-4">
@@ -64,28 +62,46 @@ export default function KeelingCurvePage() {
       </FadeInOnScroll>
       <section className="h-[200vh] relative bg-white">
         <div className="sticky top-0 h-screen flex flex-col justify-center items-center px-6 text-center">
-          <motion.h2
+          {/* <motion.h2
             className="text-3xl md:text-5xl font-bold"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
             A Curve Appears
-          </motion.h2>
-          <motion.p
+          </motion.h2> */}
+          {/* <motion.p
             className="mt-4 max-w-2xl text-lg md:text-xl text-gray-700"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
             In 1958, a new experiment began — high above the clouds.
-          </motion.p>
+          </motion.p> */}
 
           <div className="mt-10 w-full max-w-4xl">
             <KeelingCurveReveal />
           </div>
+          <motion.p
+            className="mt-20 max-w-2xl text-lg md:text-xl text-gray-700"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            In 1958, a new experiment began — high above the clouds.
+          </motion.p>
+          {/* <motion.p
+            className="mt-20 max-w-2xl text-lg md:text-xl text-gray-700"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            In 1958, a new experiment began — high above the clouds.
+          </motion.p> */}
         </div>
       </section>
+
+      <PpmSection />
     </StoryLayout>
   );
 }

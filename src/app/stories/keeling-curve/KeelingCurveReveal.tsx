@@ -162,6 +162,16 @@ export default function KeelingCurveReveal() {
 
     svg
       .append("text")
+      .attr("x", width / 2)
+      .attr("y", margin.top - 8) // position above the chart area
+      .attr("text-anchor", "middle")
+      .attr("fill", "#1e293b") // Tailwind slate-800
+      .attr("font-size", "16px")
+      // .attr("font-weight", "bold")
+      .text("Atmospheric CO₂ at Mauna Loa Observatory");
+
+    svg
+      .append("text")
       .attr("text-anchor", "middle")
       .attr("x", width / 2)
       .attr("y", height - 4)
