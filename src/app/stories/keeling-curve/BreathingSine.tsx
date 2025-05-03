@@ -99,6 +99,7 @@ export default function BreathingSine() {
     const height = 200;
     const amplitude = 60;
     const frequency = 0.02;
+    const mainLineWidth = 2;
 
     let width = containerRef.current.clientWidth;
     let markerX = width / 2;
@@ -117,13 +118,13 @@ export default function BreathingSine() {
       .append("path")
       .attr("fill", "none")
       .attr("stroke", "#06b6d4")
-      .attr("stroke-width", 2);
+      .attr("stroke-width", mainLineWidth);
 
     const dashedLinePath = svg
       .append("path")
       .attr("fill", "none")
       .attr("stroke", "#06b6d4")
-      .attr("stroke-width", 2)
+      .attr("stroke-width", mainLineWidth)
       // .attr("stroke-dasharray", "6 4")
       .attr("opacity", 0.2);
 

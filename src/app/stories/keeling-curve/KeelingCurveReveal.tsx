@@ -1,15 +1,38 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import { useInView } from "react-intersection-observer";
+
+interface DataPoint {
+  year: number;
+  trend: number;
+  avg: number;
+}
 
 export default function KeelingCurveReveal() {
   const svgRef = useRef<SVGSVGElement>(null);
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.4 });
+  const [data, setData] = useState<DataPoint[] | null>(null);
 
+  // 1. Load the CSV
   useEffect(() => {
-    if (!inView || !svgRef.current) return;
+    d3.csv("/data/co2_monthly.csv", (d: any) => {
+      const year = parseFloat(d["decimal date"]);
+      const trend = parseFloat(d["deseasonalized"]);
+      const avg = parseFloat(d["average"]);
+      return !isNaN(year) && !isNaN(trend) && !isNaN(avg)
+        ? { year, trend, avg }
+        : null;
+    }).then((parsed) => {
+      const filtered = parsed.filter((d) => d !== null) as DataPoint[];
+      setData(filtered);
+    });
+  }, []);
+
+  // 2. Draw chart
+  useEffect(() => {
+    if (!inView || !svgRef.current || !data) return;
 
     const width = 700;
     const height = 300;
@@ -20,12 +43,6 @@ export default function KeelingCurveReveal() {
       .attr("viewBox", `0 0 ${width} ${height}`)
       .attr("preserveAspectRatio", "xMidYMid meet");
 
-    // Sample data – replace with real CO₂ data later
-    const data = Array.from({ length: 65 }, (_, i) => ({
-      year: 1958 + i,
-      ppm: 315 + i * 1.6 + Math.sin(i * 0.2) * 2, // mock curve
-    }));
-
     const x = d3
       .scaleLinear()
       .domain(d3.extent(data, (d) => d.year) as [number, number])
@@ -33,12 +50,14 @@ export default function KeelingCurveReveal() {
 
     const y = d3
       .scaleLinear()
-      .domain([300, d3.max(data, (d) => d.ppm)! + 10])
+      .domain([
+        300,
+        d3.max(data, (d) => Math.max(d.ppm ?? 0, d.trend, d.avg))! + 10,
+      ])
       .range([height - margin.bottom, margin.top]);
 
     svg.selectAll("*").remove();
 
-    // Axes
     svg
       .append("g")
       .attr("transform", `translate(0,${height - margin.bottom})`)
@@ -49,35 +68,121 @@ export default function KeelingCurveReveal() {
       .attr("transform", `translate(${margin.left},0)`)
       .call(d3.axisLeft(y));
 
-    // Line
-    const path = d3
-      .line<{ year: number; ppm: number }>()
+    // Line generators
+    const lineTrend = d3
+      .line<DataPoint>()
       .x((d) => x(d.year))
-      .y((d) => y(d.ppm));
+      .y((d) => y(d.trend));
 
-    const linePath = svg
+    const lineAvg = d3
+      .line<DataPoint>()
+      .x((d) => x(d.year))
+      .y((d) => y(d.avg));
+
+    // --- Line 1: Smoothed Trend ---
+    const path1 = svg
       .append("path")
       .datum(data)
       .attr("fill", "none")
-      .attr("stroke", "#3b82f6")
+      .attr("stroke", "#06b6d4")
       .attr("stroke-width", 2)
-      .attr("d", path);
+      .attr("d", lineAvg);
 
-    // Animate path draw
-    const totalLength = (linePath.node() as SVGPathElement).getTotalLength();
+    const total1 = (path1.node() as SVGPathElement).getTotalLength();
 
-    linePath
-      .attr("stroke-dasharray", totalLength)
-      .attr("stroke-dashoffset", totalLength)
+    path1
+      .attr("stroke-dasharray", total1)
+      .attr("stroke-dashoffset", total1)
       .transition()
       .duration(2000)
       .ease(d3.easeCubicInOut)
       .attr("stroke-dashoffset", 0);
-  }, [inView]);
+
+    // --- Line 2: Monthly Average ---
+    const path2 = svg
+      .append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "#f59e0b")
+      .attr("stroke-width", 1)
+      // .attr("opacity", 0.7)
+      // .attr("stroke-dasharray", "4 2")
+      .attr("d", lineTrend);
+
+    const total2 = (path2.node() as SVGPathElement).getTotalLength();
+
+    path2
+      .attr("stroke-dasharray", total2)
+      .attr("stroke-dashoffset", total2)
+      .transition()
+      .delay(1000) // optional: stagger start
+      .duration(2000)
+      .ease(d3.easeCubicInOut)
+      .attr("stroke-dashoffset", 0);
+
+    // --- Legend Group ---
+    const legend = svg
+      .append("g")
+      .attr("transform", `translate(${margin.left + 50}, ${margin.top + 20})`);
+
+    legend
+      .append("line")
+      .attr("x1", 0)
+      .attr("y1", 0)
+      .attr("x2", 24)
+      .attr("y2", 0)
+      .attr("stroke", "#06b6d4")
+      .attr("stroke-width", 2);
+
+    legend
+      .append("text")
+      .attr("x", 32)
+      .attr("y", 4)
+      .attr("font-size", "12px")
+      .attr("fill", "#334155") // Tailwind slate-700
+      .text("Monthly Average");
+
+    legend
+      .append("line")
+      .attr("x1", 0)
+      .attr("y1", 20)
+      .attr("x2", 24)
+      .attr("y2", 20)
+      .attr("stroke", "#f59e0b")
+      .attr("stroke-width", 1);
+    // .attr("stroke-dasharray", "4 2");
+
+    legend
+      .append("text")
+      .attr("x", 32)
+      .attr("y", 24)
+      .attr("font-size", "12px")
+      .attr("fill", "#334155")
+      .text("Trend");
+
+    svg
+      .append("text")
+      .attr("text-anchor", "middle")
+      .attr("x", width / 2)
+      .attr("y", height - 4)
+      .attr("fill", "#334155") // Tailwind slate-700
+      .attr("font-size", "12px")
+      .text("Year");
+
+    svg
+      .append("text")
+      .attr("text-anchor", "middle")
+      .attr("transform", `rotate(-90)`)
+      .attr("x", -height / 2)
+      .attr("y", 16)
+      .attr("fill", "#334155")
+      .attr("font-size", "12px")
+      .text("CO₂ Concentration (ppm)");
+  }, [inView, data]);
 
   return (
     <div ref={ref}>
-      <svg ref={svgRef} className="w-full h-72" />
+      <svg ref={svgRef} className="w-full" />
     </div>
   );
 }

@@ -18,24 +18,27 @@ export default function KeelingCurvePage() {
 
       <FadeInOnScroll>
         <section className="min-h-[70vh] flex flex-col justify-center items-center py-24">
-          <p className="pb-6 italic">Breathe in.</p>
-          <p className="pb-6">
-            Every spring, as snow melts and leaves unfurl, the Northern
-            Hemisphere comes alive. Plants awaken from dormancy and draw in
-            carbon dioxide through photosynthesis, subtly lowering the planet’s
-            CO₂ levels.
-          </p>
-          <p className="pb-6 italic">Breathe out.</p>
-          <p className="pb-6">
-            Autumn brings decay. Leaves fall, plants die back, and microbes
-            break down organic matter, releasing carbon back into the
-            atmosphere. The planet exhales.
-          </p>
-          <p className="pb-6">
-            This cycle of photosynthesis and respiration is a natural rhythm of
-            life on Earth. It’s a dance between the planet and its atmosphere,
-            where carbon dioxide (CO₂) levels rise and fall with the seasons.
-          </p>
+          <div className="max-w-3xl flex flex-col justify-center items-center px-4">
+            <p className="pb-6 italic">Breathe in.</p>
+            <p className="pb-6">
+              Every spring, as snow melts and leaves unfurl, the Northern
+              Hemisphere comes alive. Plants awaken from dormancy and draw in
+              carbon dioxide through photosynthesis, subtly lowering the
+              planet’s CO₂ levels.
+            </p>
+            <p className="pb-6 italic">Breathe out.</p>
+            <p className="pb-6">
+              Autumn brings decay. Leaves fall, plants die back, and microbes
+              break down organic matter, releasing carbon back into the
+              atmosphere. The planet exhales.
+            </p>
+            <p className="pb-6">
+              This cycle of photosynthesis and respiration is a natural rhythm
+              of life on Earth. It’s a dance between the planet and its
+              atmosphere, where carbon dioxide (CO₂) levels rise and fall with
+              the seasons.
+            </p>
+          </div>
         </section>
       </FadeInOnScroll>
 
@@ -43,18 +46,20 @@ export default function KeelingCurvePage() {
 
       <FadeInOnScroll>
         <section className="min-h-[70vh] flex flex-col justify-center items-center py-24">
-          <p className="pb-6">
-            To understand this planetary respiration, scientists needed a place
-            far from cities and forests—somewhere unaffected by daily human
-            emissions. That place was Mauna Loa, a volcano in Hawaiʻi rising
-            over 11,000 feet above sea level. Its isolated peak offered a
-            pristine window into the atmosphere.
-          </p>
-          <p className="pb-6">
-            In 1958, a scientist named Charles David Keeling began collecting
-            continuous CO₂ measurements there. His meticulous work would become
-            one of the most iconic records in climate science.
-          </p>
+          <div className="max-w-3xl flex flex-col justify-center items-center px-4">
+            <p className="pb-6">
+              To understand this planetary respiration, scientists needed a
+              place far from cities and forests—somewhere unaffected by daily
+              human emissions. That place was Mauna Loa, a volcano in Hawaiʻi
+              rising over 11,000 feet above sea level. Its isolated peak offered
+              a pristine window into the atmosphere.
+            </p>
+            <p className="pb-6">
+              In 1958, a scientist named Charles David Keeling began collecting
+              continuous CO₂ measurements there. His meticulous work would
+              become one of the most iconic records in climate science.
+            </p>
+          </div>
         </section>
       </FadeInOnScroll>
       <section className="h-[200vh] relative bg-white">

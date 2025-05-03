@@ -26,7 +26,7 @@ export default function HomePage() {
   return (
     <main>
       <Head>
-        <title>Meltwater Archives</title>
+        <title>Meltwater Archive</title>
       </Head>
       {/* Hero Section */}
       <section
@@ -56,7 +56,7 @@ export default function HomePage() {
           >
             {/* <h1 className="text-4xl md:text-6xl mb-4 font-thin font-garamond"> */}
             <h1 className="text-4xl md:text-6xl mb-2 font-bold font-garamond italic">
-              Meltwater Archives
+              Meltwater Archive
             </h1>
             <p className="mb-4 font-light">
               Data-driven stories from a changing planet.
