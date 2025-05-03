@@ -184,7 +184,7 @@ export default function BreathingSine() {
 
   return (
     <div ref={containerRef} className="w-full bg-white">
-      <svg ref={svgRef} className="w-full h-48 sm:h-56 md:h-64" />
+      <svg ref={svgRef} className="w-full sm:h-56 md:h-64" />
     </div>
   );
 }

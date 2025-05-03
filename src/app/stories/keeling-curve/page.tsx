@@ -1,10 +1,12 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 import StoryLayout from "@/app/components/StoryLayout";
 import BreathingSine from "@/app/stories/keeling-curve/BreathingSine";
 import FadeInOnScroll from "@/app/components/FadeInOnScroll";
 import KeelingCurveReveal from "@/app/stories/keeling-curve/KeelingCurveReveal";
-import { motion } from "framer-motion";
+import IntroSection from "@/app/stories/keeling-curve/IntroSection";
 
 export default function KeelingCurvePage() {
   return (
@@ -12,15 +14,7 @@ export default function KeelingCurvePage() {
     // title="The Keeling Curve"
     // subtitle="Earth’s carbon breath, recorded since 1958"
     >
-      <section className="h-screen flex flex-col justify-center items-center py-24">
-        <h1 className="text-3xl md:text-5xl mb-4 font-bold font-garamond italic">
-          The Keeling Curve
-        </h1>
-        <p className="text-gray-500 mb-8">
-          Earth’s carbon breath, recorded since 1958
-        </p>
-        <BreathingSine />
-      </section>
+      <IntroSection />
 
       <FadeInOnScroll>
         <section className="min-h-[70vh] flex flex-col justify-center items-center py-24">

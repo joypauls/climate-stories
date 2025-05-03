@@ -12,7 +12,7 @@ export default function StoryLayout({ children }: Props) {
   return (
     <>
       <Nav />
-      <main className="prose prose-lg max-w-3xl mx-auto px-6">
+      <main className="prose prose-lg">
         {/* <h1 className="text-3xl md:text-5xl mb-3 font-bold font-garamond italic">
           {title}
         </h1>
