@@ -2,12 +2,12 @@
 
 import { useEffect, useRef } from "react";
 
-const NUM_PARTICLES = 800; // Use fewer for smoother performance
+// const NUM_PARTICLES = 800; // Use fewer for smoother performance
 const MULTIPLIER_FOR_SHOW = 200;
 const CO2_PPM = 420;
-const CO2_PARTICLES = Math.round(
-  ((CO2_PPM * MULTIPLIER_FOR_SHOW) / 1_000_000) * NUM_PARTICLES,
-);
+// const CO2_PARTICLES = Math.round(
+//   ((CO2_PPM * MULTIPLIER_FOR_SHOW) / 1_000_000) * NUM_PARTICLES,
+// );
 
 interface Particle {
   x: number;
@@ -34,16 +34,23 @@ export default function GasCloud() {
     resize();
     window.addEventListener("resize", resize);
 
+    const isMobile = window.innerWidth < 768;
+    // const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const baseCount = isMobile ? 400 : 800; // fewer for small screens
+    const co2Count = Math.round(
+      ((CO2_PPM * MULTIPLIER_FOR_SHOW) / 1_000_000) * baseCount,
+    );
+
     // Initialize particles
-    particles.current = Array.from({ length: NUM_PARTICLES }, (_, i) => {
-      const radius = 4;
+    particles.current = Array.from({ length: baseCount }, (_, i) => {
+      const radius = i < co2Count ? 5 : 4;
       return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         dx: (Math.random() - 0.5) * 1.5,
         dy: (Math.random() - 0.5) * 1.5,
         radius,
-        isCO2: i < CO2_PARTICLES,
+        isCO2: i < co2Count,
       };
     });
 
@@ -63,7 +70,8 @@ export default function GasCloud() {
         // Draw
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = p.isCO2 ? "#f59e0b" : "#06b6d4"; // red vs slate
+        ctx.fillStyle = p.isCO2 ? "#f59e0b" : "#06b6d4"; // CO2 is yellow
+        ctx.globalAlpha = p.isCO2 ? 0.8 : 0.5; // CO2 is more opaque
         ctx.fill();
       });
 
