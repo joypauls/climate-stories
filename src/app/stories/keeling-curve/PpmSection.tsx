@@ -1,5 +1,5 @@
 "use client";
-import GasCloud from "@/app/stories/keeling-curve/GasCloud";
+import GasCloud from "@/app/stories/keeling-curve/visuals/GasCloud";
 
 const steps = [
   "Parts per million measures the *tiny* fractions in the air.",

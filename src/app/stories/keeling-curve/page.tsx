@@ -3,11 +3,13 @@
 import { motion } from "framer-motion";
 
 import StoryLayout from "@/app/components/StoryLayout";
-import BreathingSine from "@/app/stories/keeling-curve/BreathingSine";
+// import BreathingSine from "@/app/stories/keeling-curve/visuals/BreathingSine";
 import FadeInOnScroll from "@/app/components/FadeInOnScroll";
-import KeelingCurveReveal from "@/app/stories/keeling-curve/KeelingCurveReveal";
+import KeelingCurveFull from "@/app/stories/keeling-curve/visuals/KeelingCurveFull";
 import IntroSection from "@/app/stories/keeling-curve/IntroSection";
 import PpmSection from "@/app/stories/keeling-curve/PpmSection";
+import KeelingCurveRecent from "@/app/stories/keeling-curve/visuals/KeelingCurveRecent";
+import CarbonCycle from "@/app/stories/keeling-curve/visuals/CarbonCycle";
 
 export default function KeelingCurvePage() {
   return (
@@ -80,7 +82,7 @@ export default function KeelingCurvePage() {
           </motion.p> */}
 
           <div className="mt-10 w-full max-w-4xl">
-            <KeelingCurveReveal />
+            <KeelingCurveFull />
           </div>
           <motion.p
             className="mt-20 max-w-2xl text-lg md:text-xl text-gray-700"
@@ -102,6 +104,22 @@ export default function KeelingCurvePage() {
       </section>
 
       <PpmSection />
+
+      <section className="h-[200vh] relative bg-white">
+        <div className="sticky top-0 h-screen flex flex-col justify-center items-center px-6 text-center">
+          <div className="mt-10 w-full max-w-4xl">
+            <KeelingCurveRecent />
+          </div>
+        </div>
+      </section>
+
+      <section className="h-[200vh] relative bg-white">
+        <div className="sticky top-0 h-screen flex flex-col justify-center items-center px-6 text-center">
+          <div className="mt-10 w-full max-w-4xl">
+            <CarbonCycle />
+          </div>
+        </div>
+      </section>
     </StoryLayout>
   );
 }

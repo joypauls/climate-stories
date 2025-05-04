@@ -10,7 +10,7 @@ interface DataPoint {
   avg: number;
 }
 
-export default function KeelingCurveReveal() {
+export default function KeelingCurveFull() {
   const svgRef = useRef<SVGSVGElement>(null);
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.4 });
   const [data, setData] = useState<DataPoint[] | null>(null);
@@ -79,13 +79,13 @@ export default function KeelingCurveReveal() {
       .x((d) => x(d.year))
       .y((d) => y(d.avg));
 
-    // --- Line 1: Smoothed Trend ---
+    // --- Line 1: Monthly Average ---
     const path1 = svg
       .append("path")
       .datum(data)
       .attr("fill", "none")
       .attr("stroke", "#06b6d4")
-      .attr("stroke-width", 2)
+      .attr("stroke-width", 1.5)
       .attr("d", lineAvg);
 
     const total1 = (path1.node() as SVGPathElement).getTotalLength();
@@ -98,7 +98,7 @@ export default function KeelingCurveReveal() {
       .ease(d3.easeCubicInOut)
       .attr("stroke-dashoffset", 0);
 
-    // --- Line 2: Monthly Average ---
+    // --- Line 2: Deseasonalized ---
     const path2 = svg
       .append("path")
       .datum(data)
@@ -132,7 +132,7 @@ export default function KeelingCurveReveal() {
       .attr("x2", 24)
       .attr("y2", 0)
       .attr("stroke", "#06b6d4")
-      .attr("stroke-width", 2);
+      .attr("stroke-width", 1.5);
 
     legend
       .append("text")

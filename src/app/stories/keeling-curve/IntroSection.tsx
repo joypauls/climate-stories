@@ -3,7 +3,7 @@
 import { useInView } from "react-intersection-observer";
 
 import ScrollIndicator from "@/app/components/ScrollIndicator";
-import BreathingSine from "@/app/stories/keeling-curve/BreathingSine";
+import BreathingSine from "@/app/stories/keeling-curve/visuals/BreathingSine";
 
 export default function IntroSection() {
   const { ref, inView } = useInView({
