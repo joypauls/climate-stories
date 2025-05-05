@@ -192,10 +192,67 @@ export default function KeelingCurveRecent() {
       .attr("text-anchor", "middle")
       .attr("font-size", "12px")
       .text("CO₂ Concentration (ppm)");
+
+    // // Create tooltip and focus marker
+    // const tooltip = d3.select("#tooltip");
+
+    // const focus1 = svg
+    //   .append("rect")
+    //   .attr("width", 8)
+    //   .attr("height", 8)
+    //   .attr("fill", "#06b6d4")
+    //   .style("display", "none");
+
+    // const focus2 = svg
+    //   .append("rect")
+    //   .attr("width", 8)
+    //   .attr("height", 8)
+    //   .attr("fill", "#f59e0b")
+    //   .style("display", "none");
+
+    // // Transparent overlay for tracking
+    // svg
+    //   .append("rect")
+    //   .attr("width", width)
+    //   .attr("height", height)
+    //   .attr("fill", "transparent")
+    //   .on("mousemove", function (event) {
+    //     const [mx] = d3.pointer(event);
+    //     const date = x.invert(mx);
+
+    //     // Find closest data point
+    //     const i = d3.bisector((d: any) => d.year).center(data, date);
+    //     const d = data[i];
+
+    //     focus1
+    //       .style("display", null)
+    //       .attr("x", x(d.year) - 4)
+    //       .attr("y", y(d.avg) - 4);
+
+    //     focus2
+    //       .style("display", null)
+    //       .attr("x", x(d.year) - 4)
+    //       .attr("y", y(d.trend) - 4);
+
+    //     tooltip
+    //       .style("display", "block")
+    //       .style("left", `${x(d.year) + margin.left}px`)
+    //       .style("top", `${y(d.avg)}px`)
+    //       .html(`${d.year}<br/>${d.avg.toFixed(1)} ppm`);
+    //   })
+    //   .on("mouseleave", () => {
+    //     focus1.style("display", "none");
+    //     focus2.style("display", "none");
+    //     tooltip.style("display", "none");
+    //   });
   }, [inView, data]);
 
   return (
     <div ref={ref} className="w-full">
+      {/* <div
+        id="tooltip"
+        className="absolute z-10 bg-white border border-gray-300 text-gray-800 text-xs px-2 py-1 rounded shadow hidden"
+      /> */}
       <svg ref={svgRef} className="w-full" />
     </div>
   );

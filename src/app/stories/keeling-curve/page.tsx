@@ -43,7 +43,35 @@ export default function KeelingCurvePage() {
           </div>
         </section>
       </FadeInOnScroll>
-      {/* <KeelingCurveChart /> */}
+      <section className="flex flex-col lg:flex-row max-w-6xl mx-auto h-[200vh]">
+        {/* Text column */}
+        <div className="lg:w-1/2 space-y-32 px-4 py-20">
+          <div className="min-h-[70vh]">
+            <h2 className="text-xl font-semibold">Section 1</h2>
+            <p className="text-base mt-2">Your first text block here...</p>
+          </div>
+          <div className="min-h-[70vh]">
+            <h2 className="text-xl font-semibold">Section 2</h2>
+            <p className="text-base mt-2">Your second block of text here...</p>
+          </div>
+          <div className="min-h-[70vh]">
+            <h2 className="text-xl font-semibold">Section 3</h2>
+            <p className="text-base mt-2">Another paragraph with info...</p>
+          </div>
+        </div>
+
+        {/* Sticky image column */}
+        <div className="lg:w-1/2 px-4 py-20 relative">
+          <div className="sticky top-20">
+            <img
+              src="/images/mauna_kea.jpg"
+              alt="Sticky visual"
+              className="w-full shadow-xl"
+            />
+          </div>
+        </div>
+      </section>
+
       <FadeInOnScroll>
         <section className="min-h-[70vh] flex flex-col justify-center items-center py-24">
           <div className="max-w-3xl flex flex-col justify-center items-center px-4">
