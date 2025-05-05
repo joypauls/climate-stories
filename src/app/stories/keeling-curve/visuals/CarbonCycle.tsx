@@ -2,11 +2,15 @@
 
 import { useEffect, useRef } from "react";
 import * as d3 from "d3";
+import { useInView } from "react-intersection-observer";
 
 export default function CarbonCycleBreath() {
   const svgRef = useRef<SVGSVGElement>(null);
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.4 });
 
   useEffect(() => {
+    if (!inView || !svgRef.current) return;
+
     const svg = d3.select(svgRef.current);
     const width = 600;
     const height = 200;
@@ -59,8 +63,9 @@ export default function CarbonCycleBreath() {
       .attr("y2", "0%")
       .selectAll("stop")
       .data([
-        { offset: "0%", color: "#3b82f6", opacity: 0.4 },
-        { offset: "100%", color: "#f97316", opacity: 0.4 },
+        { offset: "0%", color: "#22c55e", opacity: 0.3 },
+        { offset: "50%", color: "#c98d61", opacity: 0.3 },
+        { offset: "100%", color: "#22c55e", opacity: 0.3 },
       ])
       .enter()
       .append("stop")
@@ -77,8 +82,11 @@ export default function CarbonCycleBreath() {
       .attr("y2", "0%")
       .selectAll("stop")
       .data([
-        { offset: "0%", color: "#3b82f6" },
-        { offset: "100%", color: "#f97316" },
+        { offset: "0%", color: "#22c55e" },
+        { offset: "50%", color: "#c98d61" },
+        { offset: "100%", color: "#22c55e" },
+        // { offset: "0%", color: "#3b82f6" },
+        // { offset: "100%", color: "#f97316" },
       ])
       .enter()
       .append("stop")
@@ -99,7 +107,7 @@ export default function CarbonCycleBreath() {
       .datum(points)
       .attr("fill", "none")
       .attr("stroke", "url(#stroke-gradient)")
-      .attr("stroke-width", 3)
+      .attr("stroke-width", 4)
       .attr("d", line);
 
     const totalLength = (linePath.node() as SVGPathElement).getTotalLength();
@@ -147,7 +155,11 @@ export default function CarbonCycleBreath() {
               .style("opacity", 1);
           });
       });
-  }, []);
+  }, [inView]);
 
-  return <svg ref={svgRef} className="w-full" />;
+  return (
+    <div ref={ref} className="w-full">
+      <svg ref={svgRef} className="w-full" />
+    </div>
+  );
 }

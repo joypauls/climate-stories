@@ -9,7 +9,8 @@ const YEARS = 4;
 interface DataPoint {
   year: number;
   month: number;
-  ppm: number;
+  avg: number;
+  trend: number;
 }
 
 export default function KeelingCurveRecent() {
@@ -21,9 +22,10 @@ export default function KeelingCurveRecent() {
     d3.csv("/data/co2_monthly.csv", (d: any) => {
       const year = parseFloat(d["decimal date"]);
       const month = parseFloat(d["month"]);
-      const ppm = parseFloat(d["average"]);
-      return !isNaN(year) && !isNaN(month) && !isNaN(ppm)
-        ? { year, month, ppm }
+      const avg = parseFloat(d["average"]);
+      const trend = parseFloat(d["deseasonalized"]);
+      return !isNaN(year) && !isNaN(month) && !isNaN(avg) && !isNaN(trend)
+        ? { year, month, avg, trend }
         : null;
     }).then((parsed) => {
       const clean = parsed.filter((d) => d !== null) as DataPoint[];
@@ -53,8 +55,8 @@ export default function KeelingCurveRecent() {
     const y = d3
       .scaleLinear()
       .domain([
-        d3.min(data, (d) => d.ppm)! - 2,
-        d3.max(data, (d) => d.ppm)! + 2,
+        d3.min(data, (d) => d.avg)! - 2,
+        d3.max(data, (d) => d.avg)! + 2,
       ])
       .range([height - margin.bottom, margin.top]);
 
@@ -75,65 +77,94 @@ export default function KeelingCurveRecent() {
       .attr("transform", `translate(${margin.left},0)`)
       .call(d3.axisLeft(y));
 
-    const line = d3
+    // --- Line 1: Monthly Average ---
+    const line1 = d3
       .line<DataPoint>()
       .x((d) => x(d.year))
-      .y((d) => y(d.ppm));
+      .y((d) => y(d.avg));
 
-    const path = svg
+    const path1 = svg
       .append("path")
       .datum(data)
       .attr("fill", "none")
-      .attr("stroke", "#3b82f6")
+      .attr("stroke", "#06b6d4")
       .attr("stroke-width", 2)
-      .attr("d", line);
+      .attr("d", line1);
 
-    const totalLength = (path.node() as SVGPathElement).getTotalLength();
+    const totalLength1 = (path1.node() as SVGPathElement).getTotalLength();
 
-    path
-      .attr("stroke-dasharray", totalLength)
-      .attr("stroke-dashoffset", totalLength)
+    path1
+      .attr("stroke-dasharray", totalLength1)
+      .attr("stroke-dashoffset", totalLength1)
       .transition()
       .duration(2500)
       .ease(d3.easeCubicInOut)
-      .attr("stroke-dashoffset", 0)
-      .on("end", () => {
-        // Label Summer and Winter
-        let delay = 0;
-        data.forEach((d, i) => {
-          if (d.month == 1) {
-            svg
-              .append("text")
-              .attr("x", x(d.year))
-              .attr("y", y(d.ppm) - 10)
-              .attr("fill", "#f97316")
-              .attr("font-size", "10px")
-              .attr("text-anchor", "middle")
-              .style("opacity", 0)
-              .text("Winter")
-              .transition()
-              .delay(delay)
-              .duration(1000)
-              .style("opacity", 1);
-            delay += 200;
-          } else if (d.month == 7) {
-            svg
-              .append("text")
-              .attr("x", x(d.year))
-              .attr("y", y(d.ppm) + 15)
-              .attr("fill", "#0ea5e9")
-              .attr("font-size", "10px")
-              .attr("text-anchor", "middle")
-              .style("opacity", 0)
-              .text("Summer")
-              .transition()
-              .delay(delay)
-              .duration(1000)
-              .style("opacity", 1);
-            delay += 200;
-          }
-        });
-      });
+      .attr("stroke-dashoffset", 0);
+
+    // --- Line 2: Deseasonalized ---
+    const line2 = d3
+      .line<DataPoint>()
+      .x((d) => x(d.year))
+      .y((d) => y(d.trend));
+
+    const path2 = svg
+      .append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "#f59e0b")
+      .attr("stroke-width", 1)
+      .attr("d", line2);
+
+    const totalLength2 = (path2.node() as SVGPathElement).getTotalLength();
+
+    path2
+      .attr("stroke-dasharray", totalLength2)
+      .attr("stroke-dashoffset", totalLength2)
+      .transition()
+      .delay(1000) // optional: stagger start
+      .duration(2500)
+      .ease(d3.easeCubicInOut)
+      .attr("stroke-dashoffset", 0);
+
+    // Legend
+    const legend = svg
+      .append("g")
+      .attr("transform", `translate(${margin.left + 50}, ${margin.top + 20})`);
+
+    legend
+      .append("line")
+      .attr("x1", 0)
+      .attr("y1", 0)
+      .attr("x2", 24)
+      .attr("y2", 0)
+      .attr("stroke", "#06b6d4")
+      .attr("stroke-width", 2);
+
+    legend
+      .append("text")
+      .attr("x", 32)
+      .attr("y", 4)
+      .attr("font-size", "12px")
+      .attr("fill", "#334155") // Tailwind slate-700
+      .text("Monthly Average");
+
+    legend
+      .append("line")
+      .attr("x1", 0)
+      .attr("y1", 20)
+      .attr("x2", 24)
+      .attr("y2", 20)
+      .attr("stroke", "#f59e0b")
+      .attr("stroke-width", 1);
+    // .attr("stroke-dasharray", "4 2");
+
+    legend
+      .append("text")
+      .attr("x", 32)
+      .attr("y", 24)
+      .attr("font-size", "12px")
+      .attr("fill", "#334155")
+      .text("Trend");
 
     // Title and labels
     svg
@@ -143,7 +174,7 @@ export default function KeelingCurveRecent() {
       .attr("text-anchor", "middle")
       .attr("font-size", "16px")
       // .attr("font-weight", "bold")
-      .text("Recent CO₂ Levels (Last 5 Years)");
+      .text(`Recent CO₂ Levels (Last ${YEARS} Years)`);
 
     svg
       .append("text")
