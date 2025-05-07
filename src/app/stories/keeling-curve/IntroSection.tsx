@@ -1,33 +1,32 @@
 "use client";
 
-import { useInView } from "react-intersection-observer";
-
-import ScrollIndicator from "@/app/components/ScrollIndicator";
-import BreathingSine from "@/app/stories/keeling-curve/visuals/BreathingSine";
+import FadeInOnScroll from "@/app/components/FadeInOnScroll";
 
 export default function IntroSection() {
-  const { ref, inView } = useInView({
-    threshold: 0.6, // show until 60% of section scrolled past
-    triggerOnce: false,
-  });
-
   return (
-    <section
-      ref={ref}
-      className="min-h-screen flex flex-col justify-center items-center"
-    >
-      <div className="w-full flex-1 flex flex-col justify-center items-center pt-16">
-        <h1 className="text-3xl md:text-5xl mb-4 font-bold font-garamond italic">
-          The Keeling Curve
-        </h1>
-        <p className="text-gray-500 mb-8">
-          Earth’s carbon breath, recorded since 1958
-        </p>
-        <BreathingSine />
-      </div>
-      <div className="mb-6 h-8">
-        <ScrollIndicator show={inView} />
-      </div>
-    </section>
+    <FadeInOnScroll>
+      <section className="min-h-[70vh] flex flex-col justify-center items-center py-24">
+        <div className="max-w-3xl flex flex-col justify-center items-center px-4">
+          <p className="pb-6 italic">Breathe in.</p>
+          <p className="pb-6">
+            Every spring, as snow melts and leaves unfurl, the Northern
+            Hemisphere comes alive. Plants awaken from dormancy and draw in
+            carbon dioxide through photosynthesis, subtly lowering the planet’s
+            CO₂ levels.
+          </p>
+          <p className="pb-6 italic">Breathe out.</p>
+          <p className="pb-6">
+            Autumn brings decay. Leaves fall, plants die back, and microbes
+            break down organic matter, releasing carbon back into the
+            atmosphere. The planet exhales.
+          </p>
+          <p className="pb-6">
+            This cycle of photosynthesis and respiration is a natural rhythm of
+            life on Earth. It’s a dance between the planet and its atmosphere,
+            where carbon dioxide (CO₂) levels rise and fall with the seasons.
+          </p>
+        </div>
+      </section>
+    </FadeInOnScroll>
   );
 }
