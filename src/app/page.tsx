@@ -91,7 +91,7 @@ export default function HomePage() {
             width={500}
             height={500}
           />
-          <figcaption className="text-xs md:text-sm text-center mt-1 font-thin">
+          <figcaption className="text-xs md:text-sm text-center mt-2 font-thin">
             Source images from{" "}
             <a href="https://epic.gsfc.nasa.gov/" target="_blank">
               NASA EPIC Team

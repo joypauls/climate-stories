@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 import StoryLayout from "@/app/components/StoryLayout";
 // import BreathingSine from "@/app/stories/keeling-curve/visuals/BreathingSine";
@@ -63,11 +64,20 @@ export default function KeelingCurvePage() {
         {/* Sticky image column */}
         <div className="lg:w-1/2 px-4 py-20 relative">
           <div className="sticky top-20">
-            <img
-              src="/images/mauna_kea.jpg"
-              alt="Sticky visual"
-              className="w-full shadow-xl"
-            />
+            <figure>
+              <img
+                src="/images/mauna_loa.jpg"
+                alt="Sticky visual"
+                className="w-full shadow-xl"
+              />
+              <figcaption className="text-xs md:text-sm text-center mt-2 font-thin">
+                The volcano Mauna Loa from above. Source: NASA Earth Observatory
+                {/* {" "}
+                <a href="https://earthobservatory.nasa.gov/images/43182/mauna-loa-observatory" target="_blank">
+                  NASA Earth Observatory
+                </a> */}
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
