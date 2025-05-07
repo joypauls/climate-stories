@@ -7,7 +7,7 @@ export default function HistorySection() {
       <div className="lg:w-1/2 space-y-32 px-4 py-20">
         <div className="min-h-[70vh]">
           <h2 className="text-xl font-semibold">Section 1</h2>
-          <p className="text-base mt-2">
+          <p className="text-lg mt-2">
             To understand this planetary respiration, scientists needed a place
             far from cities and forests—somewhere unaffected by daily human
             emissions. That place was Mauna Loa, a volcano in Hawaiʻi rising
@@ -17,7 +17,7 @@ export default function HistorySection() {
         </div>
         <div className="min-h-[70vh]">
           <h2 className="text-xl font-semibold">Section 2</h2>
-          <p className="text-base mt-2">
+          <p className="text-lg mt-2">
             In 1958, a scientist named Charles David Keeling began collecting
             continuous CO₂ measurements there. His meticulous work would become
             one of the most iconic records in climate science..
@@ -25,7 +25,7 @@ export default function HistorySection() {
         </div>
         <div className="min-h-[70vh]">
           <h2 className="text-xl font-semibold">Section 3</h2>
-          <p className="text-base mt-2">Another paragraph with info...</p>
+          <p className="text-lg mt-2">Another paragraph with info...</p>
         </div>
       </div>
 

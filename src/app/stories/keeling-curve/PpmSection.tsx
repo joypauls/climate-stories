@@ -17,7 +17,7 @@ export default function PpmSection() {
 
       {/* Scroll-driven text overlay */}
       <div className="absolute top-0 w-full h-full flex flex-col justify-center items-center pointer-events-none z-10">
-        <div className="w-full max-w-2xl mx-auto px-6 space-y-[100vh]">
+        <div className="w-full max-w-2xl mx-auto px-4 space-y-[100vh]">
           {steps.map((text, idx) => (
             <div key={idx} className="pointer-events-auto">
               <p className="text-lg md:text-xl leading-snug">{text}</p>

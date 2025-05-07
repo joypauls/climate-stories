@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 // const NUM_PARTICLES = 800; // Use fewer for smoother performance
-const MULTIPLIER_FOR_SHOW = 200;
+const MULTIPLIER_FOR_SHOW = 150;
 const CO2_PPM = 420;
 // const CO2_PARTICLES = Math.round(
 //   ((CO2_PPM * MULTIPLIER_FOR_SHOW) / 1_000_000) * NUM_PARTICLES,
@@ -43,7 +43,7 @@ export default function GasCloud() {
 
     // Initialize particles
     particles.current = Array.from({ length: baseCount }, (_, i) => {
-      const radius = i < co2Count ? 5 : 4;
+      const radius = i < co2Count ? 6 : 4;
       return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,

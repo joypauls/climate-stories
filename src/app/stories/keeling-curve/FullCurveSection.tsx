@@ -6,7 +6,7 @@ import KeelingCurveFull from "@/app/stories/keeling-curve/visuals/KeelingCurveFu
 export default function FullCurveSection() {
   return (
     <section className="h-[200vh] relative bg-white">
-      <div className="sticky top-0 h-screen flex flex-col justify-center items-center px-6 text-center">
+      <div className="sticky top-0 h-screen flex flex-col justify-center items-center px-4 text-center">
         <div className="mt-10 w-full max-w-4xl">
           <KeelingCurveFull />
         </div>
