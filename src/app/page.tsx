@@ -10,6 +10,7 @@ import ArrowLink from "@/components/links/ArrowLink";
 import ButtonLink from "@/components/links/ButtonLink";
 import UnderlineLink from "@/components/links/UnderlineLink";
 import UnstyledLink from "@/components/links/UnstyledLink";
+import Button from "@/components/buttons/Button";
 
 /**
  * SVGR Support
@@ -79,8 +80,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section
+      {/* <section
         id="mission"
         className="w-full min-h-[50vh] px-8 py-20 flex flex-col-reverse lg:flex-row items-center justify-center bg-primary-900 text-white"
       >
@@ -121,7 +121,7 @@ export default function HomePage() {
             </ArrowLink>
           </div>
         </FadeInOnScroll>
-      </section>
+      </section> */}
 
       <section
         id="stories"
@@ -191,6 +191,39 @@ export default function HomePage() {
             </p>
           </div>
         </FadeInOnScroll>
+      </section>
+
+      <section
+        id="newsletter"
+        className="w-full min-h-[50vh] px-8 py-20 flex flex-col justify-center items-center bg-primary-900 text-white"
+      >
+        <div className="max-w-3xl text-center">
+          <h2 className="text-4xl mb-4">Stay Connected</h2>
+          <p className="mb-6 font-light">
+            Subscribe to our newsletter for updates. No spam :)
+          </p>
+        </div>
+        <form
+          action="https://buttondown.email/api/emails/embed-subscribe/yourusername"
+          method="post"
+          target="popupwindow"
+          onSubmit={() =>
+            window.open("https://buttondown.email/yourusername", "popupwindow")
+          }
+          className="flex flex-col sm:flex-row gap-2 sm:items-center text-black"
+        >
+          <input
+            type="email"
+            name="email"
+            id="bd-email"
+            required
+            placeholder="Your email"
+            className="px-4 py-2 rounded w-full sm:w-auto"
+          />
+          <Button type="submit" variant="primary" className="justify-center">
+            Subscribe
+          </Button>
+        </form>
       </section>
 
       <section className="bg-white">
