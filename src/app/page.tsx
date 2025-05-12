@@ -125,35 +125,40 @@ export default function HomePage() {
 
       <section
         id="stories"
-        className="w-full min-h-[50vh] px-8 py-20 flex flex-col justify-center"
+        className="w-full min-h-[70vh] px-8 py-20 flex flex-col justify-center items-center"
       >
+        <div className="max-w-3xl text-center">
+          <h2 className="text-4xl mb-4">Featured Stories</h2>
+        </div>
         {/* Stories Grid */}
         <div
           id="stories"
-          className="max-w-6xl mx-auto grid gap-8 md:grid-cols-2 py-8"
+          className="max-w-3xl mx-auto grid gap-8 md:grid-cols-2 py-8"
         >
           <StoryCard
-            title="The Keeling Curve 📈"
+            title="The Keeling Curve"
             slug="/stories/keeling-curve"
-            description="A 60-year record of rising CO₂ and Earth’s seasonal breath."
+            description="Earth’s seasonal breath, recorded since 1958"
+            isPublished={false}
           />
           <StoryCard
-            title="Surface Temperature 📈"
+            title="Surface Temperature"
             slug="/stories/surface-temp"
-            description="The record of global surface temperature anomalies."
+            description="Over 150 years of temperature changes"
+            isPublished={false}
           />
-          <StoryCard
+          {/* <StoryCard
             title="Disappearing Ice 📈"
             slug="/stories/disappearing-ice"
             description="Shrinking ice sheets and rising sea levels."
-          />
+          /> */}
         </div>
       </section>
 
       {/* Quote Section */}
       <section
         id="quote"
-        className="w-full min-h-[50vh] px-8 py-20 flex flex-col justify-center items-center bg-primary-900 text-white"
+        className="w-full min-h-[70vh] px-8 py-20 flex flex-col justify-center items-center bg-primary-900 text-white"
       >
         <FadeInOnScroll>
           <blockquote className="border-l-8 border-primary-200 p-4 max-w-3xl">
@@ -176,7 +181,7 @@ export default function HomePage() {
 
       <section
         id="about"
-        className="w-full min-h-[50vh] px-8 py-20 flex flex-col justify-center items-center bg-primary-700 text-white"
+        className="w-full min-h-[70vh] px-8 py-20 flex flex-col justify-center items-center bg-primary-700 text-white"
       >
         <FadeInOnScroll>
           <div className="max-w-3xl">
@@ -195,7 +200,7 @@ export default function HomePage() {
 
       <section
         id="newsletter"
-        className="w-full min-h-[50vh] px-8 py-20 flex flex-col justify-center items-center bg-primary-900 text-white"
+        className="w-full min-h-[70vh] px-8 py-20 flex flex-col justify-center items-center bg-primary-900 text-white"
       >
         <div className="max-w-3xl text-center">
           <h2 className="text-4xl mb-4">Stay Connected</h2>
@@ -210,7 +215,7 @@ export default function HomePage() {
           onSubmit={() =>
             window.open("https://buttondown.email/yourusername", "popupwindow")
           }
-          className="flex flex-col sm:flex-row gap-2 sm:items-center text-black"
+          className="h-[3rem] flex flex-col sm:flex-row gap-2 sm:items-center"
         >
           <input
             type="email"
@@ -218,19 +223,24 @@ export default function HomePage() {
             id="bd-email"
             required
             placeholder="Your email"
-            className="px-4 py-2 rounded w-full sm:w-auto"
+            className="h-[inherit] px-4 py-2 rounded w-full sm:w-auto text-black border-none focus:ring-primary-500 focus:ring-2"
           />
-          <Button type="submit" variant="primary" className="justify-center">
+          <Button
+            type="submit"
+            variant="primary"
+            className="justify-center h-full"
+          >
             Subscribe
           </Button>
         </form>
       </section>
 
-      <section className="bg-white">
-        <div className="layout relative flex flex-col items-center justify-center py-12 text-center">
-          <footer className="absolute bottom-2 text-gray-700">
-            © {new Date().getFullYear()} By{" "}
-            <UnderlineLink href="https://theodorusclarence.com?ref=tsnextstarter">
+      <section className="bg-white h-[15vh]">
+        <div className="layout relative flex flex-1 flex-col items-center justify-center py-12 text-center h-full">
+          <footer className="absolute text-gray-700 flex-1">
+            <p>Built with open data and open tools.</p>©{" "}
+            {new Date().getFullYear()} By{" "}
+            <UnderlineLink href="https://joypaulsen.com/">
               Joy Paulsen
             </UnderlineLink>
           </footer>

@@ -4,16 +4,30 @@ type Props = {
   title: string;
   slug: string;
   description: string;
+  isPublished?: boolean;
 };
 
-export default function StoryCard({ title, slug, description }: Props) {
+export default function StoryCard({
+  title,
+  slug,
+  description,
+  isPublished = true,
+}: Props) {
   return (
     <Link
-      href={slug}
-      className="block border rounded-lg p-6 hover:shadow-lg transition"
+      href={isPublished ? slug : "#"}
+      className="block border rounded p-6 hover:shadow-lg transition"
     >
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
       <p className="text-gray-600 text-sm">{description}</p>
+      {!isPublished && (
+        // <div className="w-full flex justify-center">
+        <div className="w-full flex">
+          <span className="inline-block bg-primary-500 text-white text-sm font-semibold px-2 py-1 rounded-full mt-4">
+            Coming Soon!
+          </span>
+        </div>
+      )}
     </Link>
   );
 }
