@@ -162,7 +162,7 @@ export default function HomePage() {
       >
         <FadeInOnScroll>
           <blockquote className="border-l-8 border-primary-200 p-4 max-w-3xl">
-            <p className="font-light">
+            <p className="font-light pb-4">
               Human activities, principally through emissions of greenhouse
               gases, have unequivocally caused global warming, with global
               surface temperature reaching 1.1°C above 1850–1900 in 2011–2020.
@@ -172,7 +172,12 @@ export default function HomePage() {
               and patterns of consumption and production across regions, between
               and within countries, and among individuals.
             </p>
-            <footer className="mt-4 text-sm font-thin">
+            <p className="font-bold">
+              Rapid and far-reaching transitions across all sectors and systems
+              are necessary to achieve deep and sustained emissions reductions
+              and secure a liveable and sustainable future for all.
+            </p>
+            <footer className="mt-4 text-sm">
               — IPCC Sixth Assessment Report
             </footer>
           </blockquote>
@@ -186,13 +191,15 @@ export default function HomePage() {
         <FadeInOnScroll>
           <div className="max-w-3xl">
             <h2 className="text-4xl mb-4">About the Project</h2>
-            <p className="mb-6 font-light">
-              See the hidden patterns of Earth's climate — one story at a time.
-              The Earth is always speaking. In the rise and fall of carbon. In
-              the breath of forests. In the slow retreat of ice. These are
-              stories told by numbers, but felt through time. They are not
-              speculative. They are what's already happened — and what continues
-              to unfold.
+            <p className="mb-4 font-light">
+              Meltwater Archive is a public project that turns climate data into
+              visual and interactive stories. Each narrative is backed by
+              reliable and well-studied datasets and is designed to make the
+              science tangible. The goal is to expand access to vital
+              information and make it easier for everyone to learn about the
+              changes happening to our planet. Whether you are a teacher,
+              student, policymaker, or just curious, we aim to provide you
+              impactful educational tools rooted in data.
             </p>
           </div>
         </FadeInOnScroll>
