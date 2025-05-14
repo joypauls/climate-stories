@@ -5,12 +5,14 @@ import * as React from "react";
 import "@/lib/env";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 import ArrowLink from "@/components/links/ArrowLink";
 import ButtonLink from "@/components/links/ButtonLink";
 import UnderlineLink from "@/components/links/UnderlineLink";
 import UnstyledLink from "@/components/links/UnstyledLink";
 import Button from "@/components/buttons/Button";
+import ScrollIndicator from "@/app/components/ScrollIndicator";
 
 /**
  * SVGR Support
@@ -24,6 +26,11 @@ import StoryCard from "@/app/components/StoryCard";
 import FadeInOnScroll from "@/app/components/FadeInOnScroll";
 
 export default function HomePage() {
+  const { ref, inView } = useInView({
+    threshold: 0.6, // show until 60% of section scrolled past
+    triggerOnce: false,
+  });
+
   return (
     <main>
       <Head>
@@ -33,6 +40,7 @@ export default function HomePage() {
       <section
         id="hero"
         className="w-full h-[100vh] flex flex-col justify-center"
+        ref={ref}
       >
         <div className="relative w-full h-[100vh] overflow-hidden">
           <Image
@@ -56,26 +64,46 @@ export default function HomePage() {
             transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
           >
             {/* <h1 className="text-4xl md:text-6xl mb-4 font-thin font-garamond"> */}
-            <h1 className="text-4xl md:text-6xl mb-2 font-bold font-garamond italic">
-              Meltwater Archive
-            </h1>
-            <p className="mb-4 font-light">
-              Data-driven stories from a changing planet.
-            </p>
-            {/* <p className="text-lg md:text-2xl max-w-2xl">
+            <div className="flex flex-1 flex-col justify-center items-center">
+              <h1 className="text-4xl md:text-6xl mb-2 font-bold font-garamond italic">
+                Meltwater Archive
+              </h1>
+              <p className="mb-4 font-light">
+                Data-driven stories from a changing planet.
+              </p>
+              {/* <p className="text-lg md:text-2xl max-w-2xl">
             A visual journey through the forces shaping our changing planet.
           </p> */}
-            {/* <ButtonLink className="mb-12" variant="light" href="#stories">
+              {/* <ButtonLink className="mb-12" variant="light" href="#stories">
               Explore ↓
             </ButtonLink> */}
-            <ArrowLink
-              as={ButtonLink}
-              className="inline-flex items-center mb-12"
-              href="#stories"
-              variant="light"
+              <span className="mb-12">
+                <ButtonLink
+                  // as={ButtonLink}
+                  className="mr-4"
+                  href="#stories"
+                  variant="light"
+                >
+                  Read
+                </ButtonLink>
+                <ButtonLink
+                  // as={ButtonLink}
+                  // className="bg-primary-700"
+                  href="#newsletter"
+                  variant="light"
+                >
+                  Subscribe
+                </ButtonLink>
+              </span>
+            </div>
+            <motion.div
+              className="mb-2"
+              initial={{ opacity: 0, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 1.5 }}
             >
-              Read Now
-            </ArrowLink>
+              <ScrollIndicator show={inView} displayText={false} />
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -127,32 +155,34 @@ export default function HomePage() {
         id="stories"
         className="w-full min-h-[70vh] px-8 py-20 flex flex-col justify-center items-center"
       >
-        <div className="max-w-3xl text-center">
-          <h2 className="text-4xl mb-4">Featured Stories</h2>
-        </div>
-        {/* Stories Grid */}
-        <div
-          id="stories"
-          className="max-w-3xl mx-auto grid gap-8 md:grid-cols-2 py-8"
-        >
-          <StoryCard
-            title="The Keeling Curve"
-            slug="/stories/keeling-curve"
-            description="Earth’s seasonal breath, recorded since 1958"
-            isPublished={false}
-          />
-          <StoryCard
-            title="Surface Temperature"
-            slug="/stories/surface-temp"
-            description="Over 150 years of temperature changes"
-            isPublished={false}
-          />
-          {/* <StoryCard
+        <FadeInOnScroll>
+          <div className="max-w-3xl text-center">
+            <h2 className="text-4xl mb-4">Featured Stories</h2>
+          </div>
+          {/* Stories Grid */}
+          <div
+            id="stories"
+            className="max-w-5xl grid gap-8 md:grid-cols-2 py-8"
+          >
+            <StoryCard
+              title="The Keeling Curve"
+              slug="/stories/keeling-curve"
+              description="Earth’s seasonal breath, recorded since 1958"
+              isPublished={false}
+            />
+            <StoryCard
+              title="Surface Temperature"
+              slug="/stories/surface-temp"
+              description="Over 150 years of temperature changes"
+              isPublished={false}
+            />
+            {/* <StoryCard
             title="Disappearing Ice 📈"
             slug="/stories/disappearing-ice"
             description="Shrinking ice sheets and rising sea levels."
           /> */}
-        </div>
+          </div>
+        </FadeInOnScroll>
       </section>
 
       {/* Quote Section */}
@@ -209,37 +239,42 @@ export default function HomePage() {
         id="newsletter"
         className="w-full min-h-[70vh] px-8 py-20 flex flex-col justify-center items-center bg-primary-900 text-white"
       >
-        <div className="max-w-3xl text-center">
-          <h2 className="text-4xl mb-4">Stay Connected</h2>
-          <p className="mb-6 font-light">
-            Subscribe to our newsletter for updates. No spam :)
-          </p>
-        </div>
-        <form
-          action="https://buttondown.email/api/emails/embed-subscribe/yourusername"
-          method="post"
-          target="popupwindow"
-          onSubmit={() =>
-            window.open("https://buttondown.email/yourusername", "popupwindow")
-          }
-          className="h-[3rem] flex flex-col sm:flex-row gap-2 sm:items-center"
-        >
-          <input
-            type="email"
-            name="email"
-            id="bd-email"
-            required
-            placeholder="Your email"
-            className="h-[inherit] px-4 py-2 rounded w-full sm:w-auto text-black border-none focus:ring-primary-500 focus:ring-2"
-          />
-          <Button
-            type="submit"
-            variant="primary"
-            className="justify-center h-full"
+        <FadeInOnScroll>
+          <div className="max-w-3xl text-center">
+            <h2 className="text-4xl mb-4">Stay Connected</h2>
+            <p className="mb-6 font-light">
+              Subscribe to our newsletter for updates. No spam :)
+            </p>
+          </div>
+          <form
+            action="https://buttondown.email/api/emails/embed-subscribe/yourusername"
+            method="post"
+            target="popupwindow"
+            onSubmit={() =>
+              window.open(
+                "https://buttondown.email/yourusername",
+                "popupwindow",
+              )
+            }
+            className="h-[3rem] flex flex-col sm:flex-row gap-2 justify-center sm:items-center"
           >
-            Subscribe
-          </Button>
-        </form>
+            <input
+              type="email"
+              name="email"
+              id="bd-email"
+              required
+              placeholder="Your email"
+              className="h-[inherit] px-4 py-2 rounded w-full sm:w-auto text-black border-none focus:ring-primary-500 focus:ring-2"
+            />
+            <Button
+              type="submit"
+              variant="primary"
+              className="justify-center h-full"
+            >
+              Subscribe
+            </Button>
+          </form>
+        </FadeInOnScroll>
       </section>
 
       <section className="bg-white h-[15vh]">

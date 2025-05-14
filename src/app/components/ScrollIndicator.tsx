@@ -2,17 +2,24 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function ScrollIndicator({ show }: { show: boolean }) {
+export default function ScrollIndicator({
+  show,
+  displayText = true,
+}: {
+  show: boolean;
+  displayText?: boolean;
+}) {
   return (
     <motion.div
-      className="flex flex-col items-center text-gray-500"
+      // className="flex flex-col items-center text-gray-500"
+      className="flex flex-col items-center"
       initial={false}
       animate={{ opacity: show ? 1 : 0 }}
       transition={{ duration: 0.4 }}
     >
-      <span className="text-sm">Scroll to continue</span>
+      {displayText && <span className="text-sm">Scroll to continue</span>}
       <svg
-        className="w-5 h-5 mt-1 animate-bounce"
+        className="w-7 h-7 mt-1 animate-bounce"
         fill="none"
         stroke="currentColor"
         strokeWidth={2}
