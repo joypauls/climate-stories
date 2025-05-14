@@ -171,9 +171,9 @@ export default function HomePage() {
               isPublished={false}
             />
             <StoryCard
-              title="Surface Temperature"
+              title="At the Surface"
               slug="/stories/surface-temp"
-              description="Over 150 years of temperature changes"
+              description="Over 150 years of surface temperature changes"
               isPublished={false}
             />
             {/* <StoryCard

@@ -16,10 +16,12 @@ export default function StoryCard({
   return (
     <Link
       href={isPublished ? slug : "#"}
-      className="block border rounded p-6 hover:shadow-lg transition"
+      className="block border rounded p-6 hover:shadow-lg min-h-[200px] flex flex-col justify-between"
     >
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-gray-600 text-sm">{description}</p>
+      <div>
+        <h3 className="text-xl font-semibold mb-2">{title}</h3>
+        <p className="text-gray-600 text-sm">{description}</p>
+      </div>
       {!isPublished && (
         // <div className="w-full flex justify-center">
         <div className="w-full flex">
