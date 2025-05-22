@@ -266,12 +266,12 @@ export default function HomePage() {
               id="bd-email"
               required
               placeholder="Your email"
-              className="h-[inherit] px-4 py-2 rounded w-full sm:w-auto text-black border-none focus:ring-primary-500 focus:ring-2"
+              className="h-[inherit] px-4 py-2 rounded-none w-full sm:w-auto text-black border-none focus:ring-primary-500 focus:ring-2"
             />
             <Button
               type="submit"
               variant="primary"
-              className="justify-center h-full"
+              className="justify-center h-full rounded-none"
             >
               Subscribe
             </Button>
