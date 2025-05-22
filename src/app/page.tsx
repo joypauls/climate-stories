@@ -78,22 +78,22 @@ export default function HomePage() {
               Explore ↓
             </ButtonLink> */}
               <span className="mb-12">
-                <ButtonLink
+                <ArrowLink
                   // as={ButtonLink}
-                  className="mr-4"
+                  className="mr-4 rounded-none border-color-white"
                   href="#stories"
                   variant="light"
                 >
                   Read
-                </ButtonLink>
-                <ButtonLink
+                </ArrowLink>
+                <ArrowLink
                   // as={ButtonLink}
-                  // className="bg-primary-700"
+                  className="rounded-none border-color-white"
                   href="#newsletter"
                   variant="light"
                 >
                   Subscribe
-                </ButtonLink>
+                </ArrowLink>
               </span>
             </div>
             <motion.div
@@ -222,14 +222,16 @@ export default function HomePage() {
           <div className="max-w-3xl">
             <h2 className="text-4xl mb-4">About the Project</h2>
             <p className="mb-4 font-light">
-              Meltwater Archive is a public project that turns climate data into
-              visual and interactive stories. Each narrative is backed by
-              reliable and well-studied datasets and is designed to make the
-              science tangible. The goal is to expand access to vital
-              information and make it easier for everyone to learn about the
-              changes happening to our planet. Whether you are a teacher,
-              student, policymaker, or just curious, we aim to provide you
-              impactful educational tools rooted in data.
+              <b className="font-bold">
+                Meltwater Archive is a public project that turns climate and
+                environmental data into visual and interactive stories.
+              </b>{" "}
+              Each narrative is backed by reliable and well-studied datasets
+              that have shaped our understanding of the climate crisis. The goal
+              is to expand access to vital information and make it easier for
+              everyone to learn about the changes happening to our planet.
+              Whether you are a teacher, student, policymaker, or just curious,
+              we aim to provide you impactful educational tools rooted in data.
             </p>
           </div>
         </FadeInOnScroll>

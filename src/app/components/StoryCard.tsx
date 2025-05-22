@@ -25,7 +25,7 @@ export default function StoryCard({
       {!isPublished && (
         // <div className="w-full flex justify-center">
         <div className="w-full flex">
-          <span className="inline-block bg-primary-500 text-white text-sm font-semibold px-2 py-1 rounded-full mt-4">
+          <span className="inline-block bg-amber-400 text-white text-sm font-semibold px-2 py-1 mt-4">
             Coming Soon!
           </span>
         </div>
